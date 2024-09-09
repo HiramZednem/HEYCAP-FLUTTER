@@ -8,23 +8,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String nombre = '';  // Aquí se almacena el estado del nombre
+  String nombre = ''; // Aquí se almacena el estado del nombre
 
-  final TextEditingController _controller = TextEditingController(); // Controlador para el TextField
+  final TextEditingController _controller =
+      TextEditingController(); // Controlador para el TextField
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        backgroundColor: Theme.of(context).colorScheme.onPrimary,
-      ),
+      appBar: AppBar(title: const Text('Home'), backgroundColor: Colors.orange),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Centra los elementos en la columna
+          mainAxisAlignment:
+              MainAxisAlignment.center, // Centra los elementos en la columna
           children: [
             TextField(
-              controller: _controller,  // Asocia el controlador al TextField
+              controller: _controller, // Asocia el controlador al TextField
               decoration: const InputDecoration(
                 labelText: 'Inserta tu nombre',
               ),
@@ -36,7 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               onPressed: () {
                 setState(() {
-                  nombre = _controller.text;  // Actualiza el estado con el valor del TextField
+                  nombre = _controller
+                      .text; // Actualiza el estado con el valor del TextField
                 });
               },
               child: const Text('Enviar'),
