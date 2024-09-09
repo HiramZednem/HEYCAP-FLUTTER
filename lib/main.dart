@@ -35,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   // List of screens to display in the navigation bar
-  final List<Widget> _screens = [const HomeScreen(), const ContactsScreen()];
+  final List<Widget> _screens = [ HomeScreen(), const ContactsScreen()];
 
   void _onItemTapped(int index) {
     setState(() {
