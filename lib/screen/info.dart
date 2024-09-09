@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class InfoScreen extends StatelessWidget {
-  const InfoScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,11 +10,7 @@ class InfoScreen extends StatelessWidget {
         title: const Text('Home'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: const Center(
-        child: 
-        
-          Text('Hola')
-      ),
+      body: const Center(child: Text('Hola')),
     );
   }
 }

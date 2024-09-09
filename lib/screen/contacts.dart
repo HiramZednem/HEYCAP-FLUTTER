@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class ContactsScreen extends StatelessWidget {
+  const ContactsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
         'phone': '9613234438',
       },
       'Miembro2': {
-        'name': 'Carlos Iram Culebro Mendez',
+        'name': 'Carlos Hiram Culebro Mendez',
         'phone': '9613321460'
       },
       'Miembro3': {
@@ -31,12 +31,12 @@ class Home extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue),
+                  border: Border.all(color: Colors.orange),
                   borderRadius: BorderRadius.circular(50),
-                  color: Colors.blue.withOpacity(0.1),
+                  color: Colors.orange.withOpacity(0.1),
                 ),
                 child: IconButton(
-                  color: const Color.fromARGB(255, 21, 155, 26),
+                  color: const Color.fromARGB(255, 0, 0, 0),
                   icon: const Icon(Icons.phone),
                   onPressed: () async {
                     final phoneNumber = Uri.parse('tel:${entry.value['phone']}');
@@ -52,13 +52,13 @@ class Home extends StatelessWidget {
               const SizedBox(width: 10),
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue),
+                  border: Border.all(color: Colors.orange),
                   borderRadius: BorderRadius.circular(50),
-                  color: Colors.blue.withOpacity(0.1),
+                  color: Colors.orange.withOpacity(0.1),
                 ),
 
                 child: IconButton(
-                  color: const Color.fromARGB(255, 21, 155, 26),
+                  color: const Color.fromARGB(255, 0, 0, 0),
                   icon: const Icon(Icons.message),
                   onPressed: () async {
                     final menssageNumber = Uri.parse('sms:${entry.value['phone']}');

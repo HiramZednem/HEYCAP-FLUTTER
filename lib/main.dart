@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heycap/screen/home.dart';
+import 'package:heycap/screen/contacts.dart';
 import 'package:heycap/screen/info.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,9 +16,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
         useMaterial3: true,
-        
       ),
       home: const MainScreen(),
     );
@@ -36,10 +35,7 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   // List of screens to display in the navigation bar
-  final List<Widget> _screens = [
-    const InfoScreen(),
-    const Home()
-  ];
+  final List<Widget> _screens = [const HomeScreen(), const ContactsScreen()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -63,16 +59,9 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepPurple,
+        selectedItemColor: Colors.orange,
         onTap: _onItemTapped,
       ),
     );
   }
 }
-
-
-
-
-
- 
-
