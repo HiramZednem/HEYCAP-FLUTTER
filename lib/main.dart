@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heycap/screen/contacts.dart';
 import 'package:heycap/screen/home.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +34,7 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   // List of screens to display in the navigation bar
-  final List<Widget> _screens = [ HomeScreen(), const ContactsScreen()];
+  final List<Widget> _screens = [ const HomeScreen(), const ContactsScreen()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -59,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.orange,
+        selectedItemColor: Colors.green,
         onTap: _onItemTapped,
       ),
     );
