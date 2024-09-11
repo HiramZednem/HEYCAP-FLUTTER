@@ -31,7 +31,7 @@ class ContactsScreen extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.orange),
+                  border: Border.all(color: Colors.greenAccent),
                   borderRadius: BorderRadius.circular(50),
                   color: Colors.orange.withOpacity(0.1),
                 ),
@@ -52,7 +52,7 @@ class ContactsScreen extends StatelessWidget {
               const SizedBox(width: 10),
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.orange),
+                  border: Border.all(color: Colors.lightGreen),
                   borderRadius: BorderRadius.circular(50),
                   color: Colors.orange.withOpacity(0.1),
                 ),
