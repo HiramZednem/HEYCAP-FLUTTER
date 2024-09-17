@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:heycap/screen/contacts.dart';
 import 'package:heycap/screen/home.dart';
+import 'package:heycap/screen/http.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   // List of screens to display in the navigation bar
-  final List<Widget> _screens = [ HomeScreen(), const ContactsScreen()];
+  final List<Widget> _screens = [ HomeScreen(), const ContactsScreen(), HttpApi()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -55,6 +56,10 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.contacts),
             label: 'Contacts',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.http),
+            label: 'HTTP',
           ),
         ],
         currentIndex: _selectedIndex,
