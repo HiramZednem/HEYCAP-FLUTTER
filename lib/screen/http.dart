@@ -26,21 +26,23 @@ class _HttpApiState extends State<HttpApi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Rick and Morty Characters'),
+        title: const Text('Rick y Morty Personajes'),
+        backgroundColor: Colors.orange,
       ),
       body: Center(
         child: FutureBuilder<Map<String, dynamic>>(
           future: fetchData(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return const CircularProgressIndicator(
+                color: Colors.orange,
+              );
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {
               final data = snapshot.data;
               final List results = data?['results'] ?? []; // List of characters
 
-              // Mostramos una lista de personajes
               return ListView.builder(
                 itemCount: results.length,
                 itemBuilder: (context, index) {
