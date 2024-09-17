@@ -8,15 +8,15 @@ class ContactsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Map<String, Map<String, String>> teamMembers = {
       'Miembro1': {
-        'name': 'Yahir Alberto Albores Madrigal',
+        'name': 'Yahir Alberto Albores Madrigal - 221228',
         'phone': '9613234438',
       },
       'Miembro2': {
-        'name': 'Carlos Hiram Culebro Mendez',
+        'name': 'Carlos Hiram Culebro Mendez - 213456',
         'phone': '9613321460'
       },
       'Miembro3': {
-        'name': 'Carlos Eduardo Chanona Aquino',
+        'name': 'Carlos Eduardo Chanona Aquino - 221233',
         'phone': '9614309361'
       },
     };

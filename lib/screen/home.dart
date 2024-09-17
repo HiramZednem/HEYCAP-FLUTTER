@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -30,8 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             TextButton(
               style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all(Colors.white),
-                backgroundColor: MaterialStateProperty.all(Colors.orange),
+                foregroundColor: WidgetStateProperty.all(Colors.white),
+                backgroundColor: WidgetStateProperty.all(Colors.orange),
               ),
               onPressed: () {
                 setState(() {
@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               child: const Text('Enviar'),
             ),
-            Text('Hola $nombre'),
+            Text('Hola $nombre mundo'),
           ],
         ),
       ),
