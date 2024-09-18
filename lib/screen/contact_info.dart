@@ -71,6 +71,53 @@ class ContactInfo extends StatelessWidget {
                   ),
                 ],
               ),
+
+              // Botones para llamar y enviar SMS
+              const SizedBox(height: 20),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.orange),
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.orange.withOpacity(0.1),
+                    ),
+                    child: IconButton(
+                      color: const Color.fromARGB(255, 0, 0, 0),
+                      icon: const Icon(Icons.phone),
+                      onPressed: () async {
+                        final phoneNumber = Uri.parse('tel:961332160');
+                        if (await canLaunchUrl(phoneNumber)) {
+                          await launchUrl(phoneNumber);
+                        } else {
+                          throw 'Could not launch $phoneNumber';
+                        }
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.orange),
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.orange.withOpacity(0.1),
+                    ),
+                    child: IconButton(
+                      color: const Color.fromARGB(255, 0, 0, 0),
+                      icon: const Icon(Icons.message),
+                      onPressed: () async {
+                        final messageNumber = Uri.parse('sms:961332160');
+                        if (await launchUrl(messageNumber)) {
+                          await launchUrl(messageNumber);
+                        } else {
+                          throw 'Could not launch $messageNumber';
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
