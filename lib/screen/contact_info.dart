@@ -58,16 +58,9 @@ class ContactInfo extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: const Icon(Icons.link),
-                    onPressed: () =>
-                        _launchURL('https://github.com/HiramZednem'),
+                    onPressed: () => _launchURL(
+                        'https://github.com/HiramZednem/HEYCAP-FLUTTER/tree/hiram-individual'),
                     tooltip: 'GitHub',
-                  ),
-                  const SizedBox(width: 16),
-                  IconButton(
-                    icon: const Icon(Icons.business),
-                    onPressed: () =>
-                        _launchURL('https://www.linkedin.com/in/hiramzednem/'),
-                    tooltip: 'LinkedIn',
                   ),
                 ],
               ),
@@ -87,7 +80,7 @@ class ContactInfo extends StatelessWidget {
                       color: const Color.fromARGB(255, 0, 0, 0),
                       icon: const Icon(Icons.phone),
                       onPressed: () async {
-                        final phoneNumber = Uri.parse('tel:961332160');
+                        final phoneNumber = Uri.parse('tel:9613321460');
                         if (await canLaunchUrl(phoneNumber)) {
                           await launchUrl(phoneNumber);
                         } else {
@@ -107,7 +100,7 @@ class ContactInfo extends StatelessWidget {
                       color: const Color.fromARGB(255, 0, 0, 0),
                       icon: const Icon(Icons.message),
                       onPressed: () async {
-                        final messageNumber = Uri.parse('sms:961332160');
+                        final messageNumber = Uri.parse('sms:9613324160');
                         if (await launchUrl(messageNumber)) {
                           await launchUrl(messageNumber);
                         } else {
