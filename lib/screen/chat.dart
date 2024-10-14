@@ -37,6 +37,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final ApiService apiService = ApiService();
   final TextEditingController _controller = TextEditingController();
   List<Map<String, String>> messages = [];
+  bool isBotTyping = false;
 
   @override
   void initState() {
@@ -73,6 +74,7 @@ class _ChatScreenState extends State<ChatScreen> {
     // Añadir el mensaje del usuario al historial
     setState(() {
       messages.add({'role': 'user', 'message': userMessage});
+      isBotTyping = true;
     });
 
     _controller.clear();
@@ -86,6 +88,7 @@ class _ChatScreenState extends State<ChatScreen> {
     // Añadir la respuesta del bot al historial
     setState(() {
       messages.add({'role': 'bot', 'message': botResponse});
+      isBotTyping = false;
     });
 
     // Guardar historial actualizado
@@ -103,8 +106,29 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: messages.length,
+              itemCount: messages.length +
+                  (isBotTyping ? 1 : 0), // +1 si el bot está escribiendo
               itemBuilder: (context, index) {
+                if (index == messages.length && isBotTyping) {
+                  // Mostrar el spinner al final de la lista
+                  return Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 10),
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        children: const [
+                          CircularProgressIndicator(),
+                          SizedBox(width: 10),
+                          Text("El bot está escribiendo..."),
+                        ],
+                      ),
+                    ),
+                  );
+                }
+
+                // Mostrar los mensajes anteriores
                 final message = messages[index];
                 final isUserMessage = message['role'] == 'user';
 
