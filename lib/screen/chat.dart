@@ -183,6 +183,10 @@ class _ChatScreenState extends State<ChatScreen> {
                     onSubmitted: (value) => sendMessage(),
                   ),
                 ),
+                IconButton(
+                  icon: const Icon(Icons.send),
+                  onPressed: sendMessage,
+                ),
               ],
             ),
           ),
