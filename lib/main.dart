@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:heycap/screen/contact_info.dart'; // Asegúrate que estas rutas sean correctas.
-import 'package:heycap/screen/contacts.dart';
-import 'package:heycap/screen/home.dart';
-import 'package:heycap/screen/http.dart'; // Archivo que contiene la lógica para HttpApi.
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:heycap/screen/home.dart'; // Asegúrate que estas rutas sean correctas.
+import 'package:heycap/screen/chat.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
@@ -19,12 +19,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
         useMaterial3: true,
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: Colors.orange, // Color de fondo de la barra
-          selectedItemColor: Colors.white, // Color de los ítems seleccionados
-          unselectedItemColor:
-              Colors.black54, // Color de los ítems no seleccionados
-        ),
       ),
       home: const MainScreen(),
     );
@@ -35,18 +29,16 @@ class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
   @override
-  _MainScreenState createState() => _MainScreenState();
+  MainScreenState createState() => MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   // Lista de pantallas que se muestran en la barra de navegación inferior
   final List<Widget> _screens = [
-    const HomeScreen(),
-    const ContactsScreen(),
-    const HttpApi(),
-    const ContactInfo(), // Pantalla de información de contacto
+    const Home(),
+    ChatScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -66,17 +58,9 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.contacts),
-            label: 'Contacts',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.http),
-            label: 'HTTP',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'About',
-          ),
+            icon: Icon(Icons.chat),
+            label: 'Chat',
+          )
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.orange,
