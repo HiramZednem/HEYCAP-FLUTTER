@@ -10,7 +10,9 @@ class ContactInfo extends StatelessWidget {
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      throw 'No se pudo abrir $url';
+      // Log the error and notify the user
+      print('No se pudo abrir $url');
+      throw 'No se pudo abrir $url. Verifica que la URL sea correcta.';
     }
   }
 
@@ -30,7 +32,7 @@ class ContactInfo extends StatelessWidget {
               const CircleAvatar(
                 radius: 80,
                 backgroundImage: NetworkImage(
-                  'https://scontent.fntr7-1.fna.fbcdn.net/v/t39.30808-6/449778905_506681621686778_7264212319723498870_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHeGU8benS3mlutpYVo0st1_6zZHa_mFOL_rNkdr-YU4lMFpP6cTGmSNDNF4nidYBPKBZAvYtQfoFxM8etANR15&_nc_ohc=-eQHpgyu6_IQ7kNvgFtiOFT&_nc_zt=23&_nc_ht=scontent.fntr7-1.fna&oh=00_AYAWbkhPBBJVuyz_5aTngS_EKK0Efcp6ku1dcZewu2GYPw&oe=66EFAB62',
+                  'https://scontent-for1-1.xx.fbcdn.net/v/t39.30808-6/449778905_506681621686778_7264212319723498870_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHeGU8benS3mlutpYVo0st1_6zZHa_mFOL_rNkdr-YU4lMFpP6cTGmSNDNF4nidYBPKBZAvYtQfoFxM8etANR15&_nc_ohc=HEZqmWfv2F4Q7kNvgFVoPlv&_nc_ht=scontent-for1-1.xx&oh=00_AYC-B6CPJlttppMPN2jfTnhU6F2dD4jp3NSCsQ8twdrw2A&oe=66F75C22',
                 ),
               ),
               const SizedBox(height: 16),
@@ -57,11 +59,9 @@ class ContactInfo extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.link),
-                    onPressed: () => _launchURL(
-                        'https://github.com/HiramZednem/HEYCAP-FLUTTER/tree/hiram-individual'),
-                    tooltip: 'GitHub',
-                  ),
+                      icon: const Icon(Icons.link),
+                      onPressed: () => _launchURL(
+                          'github.com/HiramZednem/HEYCAP-FLUTTER/tree/hiram-individual')),
                 ],
               ),
 

@@ -44,6 +44,7 @@ class _MainScreenState extends State<MainScreen> {
   // Lista de pantallas que se muestran en la barra de navegación inferior
   final List<Widget> _screens = [
     const HomeScreen(),
+    const ContactsScreen(),
     const HttpApi(),
     const ContactInfo(), // Pantalla de información de contacto
   ];
