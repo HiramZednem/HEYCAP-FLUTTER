@@ -36,6 +36,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final ApiService apiService = ApiService();
   final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
   List<Map<String, String>> messages = [];
   bool isBotTyping = false;
 
@@ -75,8 +76,8 @@ class _ChatScreenState extends State<ChatScreen> {
     setState(() {
       messages.add({'role': 'user', 'message': userMessage});
       isBotTyping = true;
+      _scrollToBottom();
     });
-
     _controller.clear();
 
     // Guardar historial actualizado
@@ -93,6 +94,16 @@ class _ChatScreenState extends State<ChatScreen> {
 
     // Guardar historial actualizado
     _saveChatHistory();
+    _scrollToBottom();
+  }
+
+  void _scrollToBottom() {
+    // Verifica si el controlador está adjunto antes de usarlo
+    if (_scrollController.hasClients) {
+      // Desplazarse hacia el final de la lista
+      _scrollController
+          .jumpTo(_scrollController.position.maxScrollExtent + 130);
+    }
   }
 
   @override
@@ -106,6 +117,7 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Expanded(
             child: ListView.builder(
+              controller: _scrollController, // Asignar el ScrollController
               itemCount: messages.length +
                   (isBotTyping ? 1 : 0), // +1 si el bot está escribiendo
               itemBuilder: (context, index) {
