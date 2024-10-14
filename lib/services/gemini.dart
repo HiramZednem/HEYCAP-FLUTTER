@@ -6,13 +6,18 @@ class ApiService {
 
   ApiService()
       : model = GenerativeModel(
-            model: 'gemini-1.5-flash',
-            apiKey: dotenv.env['API_KEY'] as String);
+            model: 'gemini-1.5-flash', apiKey: dotenv.env['API_KEY'] as String);
 
-  Future<String> getResponse(String userMessage) async {
+  Future<String> getResponse(List<Map<String, String>> conversation) async {
     try {
       print('this is my apikey: ${dotenv.env['API_KEY']}');
-      final response = await model.generateContent([Content.text(userMessage)]);
+      // Crear una lista de mensajes con el formato correcto para el modelo
+      final List<Content> contentList = conversation.map((message) {
+        return Content.text(message['message']!);
+      }).toList();
+
+      // Llamar a la API con la conversación completa
+      final response = await model.generateContent(contentList);
 
       if (response.text != null) {
         return response.text!;

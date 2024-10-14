@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Gemini Chatbot',
       theme: ThemeData(
-        primarySwatch: Colors.orange,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+        useMaterial3: true,
       ),
       home: const ChatScreen(),
     );
@@ -39,14 +40,18 @@ class _ChatScreenState extends State<ChatScreen> {
     if (_controller.text.isEmpty) return;
 
     String userMessage = _controller.text;
+    
+    // Añadir el mensaje del usuario al historial
     setState(() {
       messages.add({'role': 'user', 'message': userMessage});
     });
 
     _controller.clear();
 
-    String botResponse = await apiService.getResponse(userMessage);
+    // Obtener la respuesta del bot enviando todo el historial de mensajes
+    String botResponse = await apiService.getResponse(messages);
 
+    // Añadir la respuesta del bot al historial
     setState(() {
       messages.add({'role': 'bot', 'message': botResponse});
     });
@@ -57,6 +62,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Gemini Chatbot'),
+        backgroundColor: Colors.orange,
       ),
       body: Column(
         children: [
@@ -76,7 +82,9 @@ class _ChatScreenState extends State<ChatScreen> {
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: isUserMessage ? Colors.orange : Colors.black,
+                      color: isUserMessage
+                          ? Colors.orange
+                          : const Color.fromARGB(255, 157, 150, 128),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
