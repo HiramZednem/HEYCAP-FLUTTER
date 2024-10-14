@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:heycap/services/gemini.dart'; // Asegúrate de que esta ruta sea correcta
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,17 +38,47 @@ class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _controller = TextEditingController();
   List<Map<String, String>> messages = [];
 
+  @override
+  void initState() {
+    super.initState();
+    _loadChatHistory(); // Cargar historial al iniciar la aplicación
+  }
+
+  // Método para guardar el historial en el local storage
+  Future<void> _saveChatHistory() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String messagesJson = jsonEncode(messages); // Convertir la lista a JSON
+    await prefs.setString('chat_history', messagesJson);
+  }
+
+  // Método para cargar el historial desde el local storage
+  Future<void> _loadChatHistory() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? messagesJson = prefs.getString('chat_history');
+
+    if (messagesJson != null) {
+      setState(() {
+        messages = (jsonDecode(messagesJson) as List)
+            .map((item) => Map<String, String>.from(item))
+            .toList();
+      });
+    }
+  }
+
   void sendMessage() async {
     if (_controller.text.isEmpty) return;
 
     String userMessage = _controller.text;
-    
+
     // Añadir el mensaje del usuario al historial
     setState(() {
       messages.add({'role': 'user', 'message': userMessage});
     });
 
     _controller.clear();
+
+    // Guardar historial actualizado
+    _saveChatHistory();
 
     // Obtener la respuesta del bot enviando todo el historial de mensajes
     String botResponse = await apiService.getResponse(messages);
@@ -55,6 +87,9 @@ class _ChatScreenState extends State<ChatScreen> {
     setState(() {
       messages.add({'role': 'bot', 'message': botResponse});
     });
+
+    // Guardar historial actualizado
+    _saveChatHistory();
   }
 
   @override
