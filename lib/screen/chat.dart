@@ -3,23 +3,6 @@ import 'package:heycap/services/gemini.dart'; // Asegúrate de que esta ruta sea
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Gemini Chatbot',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
-        useMaterial3: true,
-      ),
-      home: const ChatScreen(),
-    );
-  }
-}
-
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 
