@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heycap/screen/chat.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AvailableChatsScreen extends StatefulWidget {
@@ -76,6 +77,15 @@ class _AvailableChatsScreenState extends State<AvailableChatsScreen> {
                     icon: const Icon(Icons.delete),
                     onPressed: () => _removeChat(index),
                   ),
+                  onTap: () {
+                    // Navegar a la pantalla de detalles del chat
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChatScreen(),
+                      ),
+                    );
+                  },
                 );
               },
             ),
