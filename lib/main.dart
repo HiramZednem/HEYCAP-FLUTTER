@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:heycap/screen/availableChatsScreen.dart';
 import 'package:heycap/screen/home.dart'; // Asegúrate que estas rutas sean correctas.
 import 'package:heycap/screen/chat.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -38,7 +40,7 @@ class MainScreenState extends State<MainScreen> {
   // Lista de pantallas que se muestran en la barra de navegación inferior
   final List<Widget> _screens = [
     const Home(),
-    ChatScreen(),
+    const AvailableChatsScreen(),
   ];
 
   void _onItemTapped(int index) {

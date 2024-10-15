@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:heycap/services/gemini.dart'; // Asegúrate de que esta ruta sea correcta
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
-  runApp(const MyApp());
-}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
