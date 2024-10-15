@@ -7,11 +7,9 @@ class ApiService {
   ApiService()
       : model = GenerativeModel(
             model: 'gemini-1.5-flash', apiKey: dotenv.env['API_KEY'] as String);
-
+                                      // role, mensaje
   Future<String> getResponse(List<Map<String, String>> conversation) async {
     try {
-      print('this is my apikey: ${dotenv.env['API_KEY']}');
-      // Crear una lista de mensajes con el formato correcto para el modelo
       final List<Content> contentList = conversation.map((message) {
         return Content.text(message['message']!);
       }).toList();
@@ -22,11 +20,9 @@ class ApiService {
       if (response.text != null) {
         return response.text!;
       } else {
-        print('No se generó texto en la respuesta');
         return 'Error: No se generó una respuesta válida.';
       }
     } catch (e) {
-      print('Error: $e');
       return 'Error: $e';
     }
   }
