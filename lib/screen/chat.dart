@@ -4,7 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+  final String chatName; // Nombre del chat
+
+  const ChatScreen({Key? key, required this.chatName}) : super(key: key);
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -27,13 +29,15 @@ class _ChatScreenState extends State<ChatScreen> {
   Future<void> _saveChatHistory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String messagesJson = jsonEncode(messages); // Convertir la lista a JSON
-    await prefs.setString('chat_history', messagesJson);
+    await prefs.setString('${widget.chatName}_chat_history',
+        messagesJson); // Guardar con el nombre del chat
   }
 
   // Método para cargar el historial desde el local storage
   Future<void> _loadChatHistory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? messagesJson = prefs.getString('chat_history');
+    String? messagesJson = prefs.getString(
+        '${widget.chatName}_chat_history'); // Cargar con el nombre del chat
 
     if (messagesJson != null) {
       setState(() {
@@ -87,7 +91,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Gemini Chatbot'),
+        title: Text(widget.chatName), // Mostrar el nombre del chat
         backgroundColor: Colors.orange,
       ),
       body: Column(

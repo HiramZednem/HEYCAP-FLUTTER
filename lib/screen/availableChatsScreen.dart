@@ -82,7 +82,8 @@ class _AvailableChatsScreenState extends State<AvailableChatsScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ChatScreen(),
+                        builder: (context) =>
+                            ChatScreen(chatName: _chats[index]),
                       ),
                     );
                   },
