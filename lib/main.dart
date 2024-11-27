@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:heycap/screen/availableChatsScreen.dart';
+import 'package:heycap/screen/graficaScreen.dart';
 import 'package:heycap/screen/home.dart';
 
 void main() async {
@@ -39,7 +40,7 @@ class MainScreenState extends State<MainScreen> {
   // Lista de pantallas que se muestran en la barra de navegación inferior
   final List<Widget> _screens = [
     const Home(),
-    const AvailableChatsScreen(),
+    GraficaScreen(),
   ];
 
   void _onItemTapped(int index) {
